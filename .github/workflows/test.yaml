@@ -17,7 +17,7 @@ jobs:
 
       - name: "Start2"
         run: |
-          pwd
+          dir
 
       - name: "Signing"
         run: |
