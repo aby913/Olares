@@ -7,7 +7,7 @@ fi
 cat $1|while read image; do
     name=$(echo -n "$image"|md5sum|awk '{print $1}')
     if [ ! -z "$FROM_S3" ]; then
-        curl -fsSLI https://dc3p1870nn3cj.cloudfront.net/$path$name.tar.gz > /dev/null
+        aws s3 ls s3://zhangliang-s3-test/test2/
         if [ $? -ne 0 ]; then
             docker pull $image --platform $PLATFORM
             docker save $image -o $name.tar
