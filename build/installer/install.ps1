@@ -1,6 +1,6 @@
 $currentPath = Get-Location
 $architecture = $env:PROCESSOR_ARCHITECTURE
-$version = "#__VERSION__"
+$version = "1.11.0-20241117"
 
 function Test-Wait {
   while ($true) {

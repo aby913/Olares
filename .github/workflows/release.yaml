@@ -44,8 +44,8 @@ jobs:
           AWS_DEFAULT_REGION: "zhangliang-s3-test"
         run: |
           md5sum install-wizard-v${{ github.event.inputs.tags }}.tar.gz > install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt && \
-          aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt --acl=public-read && \
-          aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.tar.gz s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.tar.gz --acl=public-read
+          aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt && \
+          aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.tar.gz s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.tar.gz
 
   release:
     runs-on: ubuntu-latest
@@ -61,18 +61,6 @@ jobs:
         working-directory: ./build/installer
         run: |
           echo 'DEBUG_VERSION="false"' > .env
-
-      - name: Get checksum
-        id: vars
-        run: |
-          echo "version_md5sum=$(curl -sSfL https://dc3p1870nn3cj.cloudfront.net/install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt|awk '{print $1}')" >> $GITHUB_OUTPUT
-
-      - name: Update checksum
-        uses: eball/write-tag-to-version-file@latest
-        with:
-          filename: "build/installer/install.sh"
-          placeholder: "#__MD5SUM__"
-          tag: ${{ steps.vars.outputs.version_md5sum }}
 
       - name: Package installer
         run: |
