@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: "Signing"
         run: |
-          pwd
+          systeminfo ; $PSVersionTable.PSVersion
