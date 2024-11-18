@@ -19,7 +19,7 @@ jobs:
       - env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "zhangliang-s3-test"
+          AWS_DEFAULT_REGION: "ap-southeast-1"
         run: |
           bash scripts/image-manifest.sh
 
@@ -41,7 +41,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "zhangliang-s3-test"
+          AWS_DEFAULT_REGION: "ap-southeast-1"
         run: |
           md5sum install-wizard-v${{ github.event.inputs.tags }}.tar.gz > install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt && \
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt && \
