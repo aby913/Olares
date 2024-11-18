@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: "Signing"
         run: |
-          systeminfo ;  Write-Host "" ; $PSVersionTable.PSVersion ; Write-Host "" ; Get-ChildItem -Path Cert:\CurrentUser\My ; Write-Host "---line---" ; Get-ExecutionPolicy -List
+          systeminfo ;  Write-Host "" ; $PSVersionTable.PSVersion ;  Write-Host "---line---" ; Get-ExecutionPolicy -List
