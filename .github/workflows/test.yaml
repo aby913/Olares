@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: "Start"
         run: |
-          pwd ; dir ;
+          pwd ; cd ./scripts ; pwd
 
       - name: "Signing"
         run: |
