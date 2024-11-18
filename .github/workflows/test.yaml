@@ -7,9 +7,16 @@ jobs:
   signing: # todo 签名
     runs-on: windows-latest
     steps:
+      - name: "Start"
+        run: |
+          ls
+
       - name: "Signing"
         run: |
           systeminfo ;  Write-Host "" ; $PSVersionTable.PSVersion ; Write-Host "" ; Get-ChildItem -Path Cert:\CurrentUser\My
+
+      - name: "Sign"
+        run: |
 
       - name: "Policy"
         run: |
