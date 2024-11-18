@@ -13,18 +13,14 @@ jobs:
 
       - name: "Start1"
         run: |
-          ls
-
-      - name: "Start2"
-        run: |
-          dir
+          Get-ChildItem
 
       - name: "Signing"
         run: |
           systeminfo ;  Write-Host "" ; $PSVersionTable.PSVersion ; Write-Host "" ; Get-ChildItem -Path Cert:\CurrentUser\My
 
-      - name: "Sign"
-        run: |
+      # - name: "Sign"
+      #   run: |
 
       - name: "Policy"
         run: |
