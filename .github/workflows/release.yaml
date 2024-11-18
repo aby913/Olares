@@ -47,6 +47,13 @@ jobs:
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt && \
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.tar.gz s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.tar.gz
 
+  signing: # todo 签名
+    runs-on: windows-latest
+    steps:
+      - name: "Signing"
+        run: |
+          pwd
+
   release:
     runs-on: ubuntu-latest
     needs: [upload-package]

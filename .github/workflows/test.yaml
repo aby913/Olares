@@ -1,0 +1,12 @@
+name: Windows Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  signing: # todo 签名
+    runs-on: windows-latest
+    steps:
+      - name: "Signing"
+        run: |
+          pwd
