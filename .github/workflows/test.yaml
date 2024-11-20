@@ -21,11 +21,11 @@ jobs:
 
       - name: "Get1"
         run: |
-          Write-Host "---get1---" ; cd .. ; gci
+          Write-Host "---get1---" ; cd .. ; cd .. ; gci
 
       - name: "Get2"
         run: |
-          Write-Host "---get2---" ; cd .. ; gci
+          Write-Host "---get2---" ; cd .. ; cd .. ; cd .. ; gci
 
       - name: "Line"
         run: |
