@@ -38,10 +38,16 @@ function MakeMySignCert{
     dir cert:\currentuser\my -CodeSigningCert
     }
 
-Get-Content -Path .\install.ps1 | ForEach-Object {
-    $_ -replace "#__VERSION__", $Version
-} | Set-Content -Path .\install.ps1
+function changeVersion {
+    Get-Content -Path .\install.ps1 | ForEach-Object {
+        $_ -replace "#__VERSION__", $Version
+    } | Set-Content -Path .\install_tmp.ps1
 
+    Remove-Item -Path .\install.ps1 -Force
+    Rename-Item -Path .\install_tmp.ps1 -NewName .\install.ps1
+}
+
+changeVersion
 
 $email = "admin@olares.com"
 MakeMySignCert -yourEmail $email
