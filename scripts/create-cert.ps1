@@ -36,6 +36,6 @@ function MakeMySignCert{
 
 $email = "admin@olares.com"
 MakeMySignCert -yourEmail $email
-$cert = @(Get-ChildItem cert:\CurrentUser\My -codesigning)[1] ; $cert
+$cert = @(Get-ChildItem cert:\CurrentUser\My -codesigning) ; $cert
 $UseCert = $cert[0]
 Set-AuthenticodeSignature -FilePath .\install.ps1 -Certificate $UseCert
