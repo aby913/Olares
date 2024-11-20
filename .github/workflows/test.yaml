@@ -16,9 +16,13 @@ jobs:
         with:
           ref: refs/heads/main
 
+      - name: "Show"
+        run: |
+          gci
+
       - name: "Copy Files"
         run: |
-          Copy-Item -Path .\build\install.ps1 -Destination . ; Copy-Item -Path .\scripts\create-cert.ps1 -Destination .
+          Copy-Item -Path .\build\installer\install.ps1 -Destination . ; Copy-Item -Path .\scripts\create-cert.ps1 -Destination .
 
       - name: "Show"
         run: |
