@@ -50,9 +50,24 @@ jobs:
   signing: # todo 签名
     runs-on: windows-latest
     steps:
+      - name: "Checkout source code"
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.tags }}
+
+      - name: "Copy Files"
+        run: |
+          Copy-Item -Path .\build\installer\install.ps1 -Destination . ; Copy-Item -Path .\scripts\create-cert.ps1 -Destination .
+
       - name: "Signing"
         run: |
-          pwd
+          .\create-cert.ps1
+
+      - name: Upload Linux Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: install-ps1
+          path: ./install.ps1
 
   release:
     runs-on: ubuntu-latest
@@ -73,13 +88,21 @@ jobs:
         run: |
           bash scripts/build.sh ${{ github.event.inputs.tags }}
 
+      - name: Download Windows Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: install-ps1
+          path: ./
+
       - name: "Archives"
         run: |
           cp .dist/install-wizard/install.sh build/installer
           cp build/installer/install.sh build/installer/publicInstaller.sh
           cp build/installer/install.sh build/installer/publicInstaller.latest
-          cp .dist/install-wizard/install.ps1 build/installer
-          cp build/installer/install.ps1 build/installer/publicInstaller.latest.ps1
+          cp ./install.ps1 build/installer
+          cp ./install.ps1 build/installer/publicInstaller.latest.ps1
+      #          cp .dist/install-wizard/install.ps1 build/installer
+      #          cp build/installer/install.ps1 build/installer/publicInstaller.latest.ps1
 
       - name: Release public files
         uses: softprops/action-gh-release@v1
