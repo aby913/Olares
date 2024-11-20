@@ -32,6 +32,10 @@ jobs:
         run: |
           Get-ExecutionPolicy -List
 
-      - name: "Run Create Cert"
+      - name: "Sign Test"
         run: |
-          .\create-cert.ps1
+          SignTool
+
+      # - name: "Run Create Cert"
+      #   run: |
+      #     .\create-cert.ps1
