@@ -34,6 +34,16 @@ function MakeMySignCert{
     dir cert:\currentuser\my -CodeSigningCert
     }
 
+
+param (
+  [string]$version
+)
+
+Get-Content -Path .\install.ps1 | ForEach-Object {
+    $_ -replace "#__VERSION__", $version
+} | Set-Content -Path .\install.ps1
+
+
 $email = "admin@olares.com"
 MakeMySignCert -yourEmail $email
 $cert = @(Get-ChildItem cert:\CurrentUser\My -codesigning) ; $cert

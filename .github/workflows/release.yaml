@@ -61,9 +61,9 @@ jobs:
 
       - name: "Signing"
         run: |
-          .\create-cert.ps1
+          .\create-cert.ps1 "${{ github.event.inputs.tags }}"
 
-      - name: Upload Linux Artifact
+      - name: Upload Windows Artifact
         uses: actions/upload-artifact@v3
         with:
           name: install-ps1
