@@ -1,3 +1,7 @@
+param (
+  [string]$Version
+)
+
 function MakeMySignCert{
     <#
     .SYNOPSIS
@@ -33,11 +37,6 @@ function MakeMySignCert{
     write-host -BackgroundColor Green -ForegroundColor White "`nYou have the following Code Signing Certs available!"
     dir cert:\currentuser\my -CodeSigningCert
     }
-
-
-param (
-  [string]$Version
-)
 
 Get-Content -Path .\install.ps1 | ForEach-Object {
     $_ -replace "#__VERSION__", $Version
