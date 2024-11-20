@@ -36,11 +36,11 @@ function MakeMySignCert{
 
 
 param (
-  [string]$version
+  [string]$Version
 )
 
 Get-Content -Path .\install.ps1 | ForEach-Object {
-    $_ -replace "#__VERSION__", $version
+    $_ -replace "#__VERSION__", $Version
 } | Set-Content -Path .\install.ps1
 
 
