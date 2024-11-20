@@ -17,7 +17,7 @@ jobs:
 
       - name: "Get"
         run: |
-          Write-Host "---get---" ; gci
+          Write-Host "---get---" ; cd .. ; gci
 
       - name: "Line"
         run: |
