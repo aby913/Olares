@@ -13,7 +13,7 @@ jobs:
 
       - name: "Start1"
         run: |
-          Get-ChildItem
+          Get-ChildItem -Path .
 
       - name: "Signing"
         run: |
