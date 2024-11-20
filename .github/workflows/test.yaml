@@ -32,10 +32,10 @@ jobs:
         run: |
           Get-ExecutionPolicy -List
 
-      - name: "Sign Test"
-        run: |
-          SignTool
-
       # - name: "Run Create Cert"
       #   run: |
       #     .\create-cert.ps1
+
+      - name: "Go1"
+        run: |
+          cd /; cd '.\Program Files (x86)\Windows Kits\10\bin\'; gci
