@@ -11,9 +11,17 @@ jobs:
         run: |
           pwd
 
-      - name: "Start1"
+      - name: "Check PowerShell Version"
         run: |
-          Get-ChildItem -Path .
+          $PSVersionTable.PSVersion
+
+      - name: "Get"
+        run: |
+          Write-Host "---get---" ; gci
+
+      - name: "Line"
+        run: |
+          Write-Host "---line---"
 
       - name: "Signing"
         run: |
