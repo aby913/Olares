@@ -43,5 +43,5 @@ jobs:
 
       - name: "Go2"
         run: |
-          c:; gci
+          c:; cd /; cd '.\Program Files (x86)\Windows Kits\10\bin\'; gci
         continue-on-error: true
