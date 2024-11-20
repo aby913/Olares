@@ -38,4 +38,10 @@ jobs:
 
       - name: "Go1"
         run: |
-          cd /; cd '.\Program Files (x86)\Windows Kits\10\bin\'; gci
+          cd /; gci
+        continue-on-error: true
+
+      - name: "Go2"
+        run: |
+          c:; gci
+        continue-on-error: true
