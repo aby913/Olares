@@ -11,9 +11,18 @@ jobs:
         run: |
           pwd
 
+      - name: "Checkout source code"
+        uses: actions/checkout@v3
+        with:
+          ref: refs/heads/main
+
       - name: "Check PowerShell Version"
         run: |
           $PSVersionTable.PSVersion
+
+      - name: "Show"
+        run: |
+          Write-Host "---get---" ; gci
 
       - name: "Get"
         run: |
