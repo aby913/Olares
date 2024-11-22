@@ -47,7 +47,7 @@ jobs:
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt && \
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.tar.gz s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.tar.gz
 
-  signing:
+  signing: # + signing
     runs-on: self-hosted
     steps:
       - name: "Checkout source code"
@@ -64,11 +64,15 @@ jobs:
         run: |
           .\${{ github.event.inputs.tags }}\create-cert.ps1 "${{ github.event.inputs.tags }}"
 
-      - name: Upload Windows Artifact
+      - name: Upload Signed File
         uses: actions/upload-artifact@v3
         with:
-          name: install-ps1
+          name: signed-file
           path: .\${{ github.event.inputs.tags }}\install.ps1
+
+      - name: Remove Cache Files
+        run: |
+          Remove-Item -Recurse -Force -Path .\${{ github.event.inputs.tags }}
 
   release:
     runs-on: ubuntu-latest
@@ -89,10 +93,10 @@ jobs:
         run: |
           bash scripts/build.sh ${{ github.event.inputs.tags }}
 
-      - name: Download Windows Artifact
+      - name: Download Signed File
         uses: actions/download-artifact@v3
         with:
-          name: install-ps1
+          name: signed-file
           path: ./
 
       - name: "Archives"
