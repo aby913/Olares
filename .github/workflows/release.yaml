@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: signed-file
-          path: ./.dist/install-wizard
+          path: ./build/installer/
 
       - name: Package installer
         run: |
