@@ -95,12 +95,6 @@ jobs:
         run: |
           bash scripts/build.sh ${{ github.event.inputs.tags }}
 
-      - name: Download Signed File
-        uses: actions/download-artifact@v3
-        with:
-          name: signed-file
-          path: ./
-
       - name: "Archives"
         run: |
           cp .dist/install-wizard/install.sh build/installer
