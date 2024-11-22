@@ -47,7 +47,7 @@ jobs:
           path: .\${{ github.event.inputs.tags }}\install.ps1
 
   upload-package:
-    needs: [push]
+    needs: [push, signing]
     runs-on: ubuntu-latest
 
     steps:
@@ -90,6 +90,12 @@ jobs:
         working-directory: ./build/installer
         run: |
           echo 'DEBUG_VERSION="false"' > .env
+
+      - name: Download Signed File
+        uses: actions/download-artifact@v3
+        with:
+          name: signed-file
+          path: ./build/installer/
 
       - name: Package installer
         run: |
