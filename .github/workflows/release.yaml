@@ -47,8 +47,8 @@ jobs:
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt && \
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.tar.gz s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.tar.gz
 
-  signing: # todo 签名
-    runs-on: windows-latest
+  signing: # + sign
+    runs-on: self-hosted
     steps:
       - name: "Checkout source code"
         uses: actions/checkout@v3
@@ -101,8 +101,6 @@ jobs:
           cp build/installer/install.sh build/installer/publicInstaller.latest
           cp ./install.ps1 build/installer
           cp ./install.ps1 build/installer/publicInstaller.latest.ps1
-      #          cp .dist/install-wizard/install.ps1 build/installer
-      #          cp build/installer/install.ps1 build/installer/publicInstaller.latest.ps1
 
       - name: Release public files
         uses: softprops/action-gh-release@v1
