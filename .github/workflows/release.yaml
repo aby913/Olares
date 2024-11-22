@@ -47,8 +47,8 @@ jobs:
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.md5sum.txt && \
           aws s3 cp install-wizard-v${{ github.event.inputs.tags }}.tar.gz s3://zhangliang-s3-test/test2/install-wizard-v${{ github.event.inputs.tags }}.tar.gz
 
-  signing: # + signing
-    runs-on: self-hosted
+  signing:
+    runs-on: self-hosted-sign
     steps:
       - name: "Checkout source code"
         uses: actions/checkout@v3
