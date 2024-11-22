@@ -58,17 +58,17 @@ jobs:
 
       - name: "Copy Files"
         run: |
-          Copy-Item -Path .\${{ github.event.inputs.tags }}\build\installer\install.ps1 -Destination . ; Copy-Item -Path .\${{ github.event.inputs.tags }}\scripts\create-cert.ps1 -Destination .
+          Copy-Item -Path .\${{ github.event.inputs.tags }}\build\installer\install.ps1 -Destination .\${{ github.event.inputs.tags }}\ ; Copy-Item -Path .\${{ github.event.inputs.tags }}\scripts\create-cert.ps1 -Destination .\${{ github.event.inputs.tags }}\
 
       - name: "Signing"
         run: |
-          .\create-cert.ps1 "${{ github.event.inputs.tags }}"
+          .\${{ github.event.inputs.tags }}\create-cert.ps1 "${{ github.event.inputs.tags }}"
 
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@v3
         with:
           name: install-ps1
-          path: ./install.ps1
+          path: .\${{ github.event.inputs.tags }}\install.ps1
 
   release:
     runs-on: ubuntu-latest
