@@ -54,10 +54,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.inputs.tags }}
+          path: .\${{ github.event.inputs.tags }}
 
       - name: "Copy Files"
         run: |
-          Copy-Item -Path .\build\installer\install.ps1 -Destination . ; Copy-Item -Path .\scripts\create-cert.ps1 -Destination .
+          Copy-Item -Path .\${{ github.event.inputs.tags }}\build\installer\install.ps1 -Destination . ; Copy-Item -Path .\${{ github.event.inputs.tags }}\scripts\create-cert.ps1 -Destination .
 
       - name: "Signing"
         run: |
