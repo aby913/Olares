@@ -70,10 +70,6 @@ jobs:
           name: signed-file
           path: .\${{ github.event.inputs.tags }}\install.ps1
 
-      - name: Remove Cache Files
-        run: |
-          Remove-Item -Recurse -Force -Path .\${{ github.event.inputs.tags }}
-
   release:
     runs-on: ubuntu-latest
     needs: [upload-package, signing]
