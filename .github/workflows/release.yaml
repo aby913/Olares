@@ -26,20 +26,6 @@ jobs:
   signing:
     runs-on: self-hosted-sign
     steps:
-      - name: "Checkout source code"
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.tags }}
-          path: .\${{ github.event.inputs.tags }}
-
-      - name: "Copy Files"
-        run: |
-          Copy-Item -Path .\${{ github.event.inputs.tags }}\build\installer\install.ps1 -Destination .\${{ github.event.inputs.tags }}\ ; Copy-Item -Path .\${{ github.event.inputs.tags }}\scripts\create-cert.ps1 -Destination .\${{ github.event.inputs.tags }}\
-
-      - name: "Signing"
-        run: |
-          .\${{ github.event.inputs.tags }}\create-cert.ps1 "${{ github.event.inputs.tags }}"
-
       - name: Upload Signed File
         uses: actions/upload-artifact@v3
         with:
